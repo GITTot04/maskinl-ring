@@ -14,12 +14,14 @@
   "dependencies": {
     "pinia": "^2.0.28",
     "vue": "^3.2.45",
+    "vue-barcode-reader": "^1.0.3",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",
     "@types/jsdom": "^20.0.1",
     "@types/node": "^18.11.12",
+    "@types/vue-barcode-reader": "^0.0.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.0",
     "@vue/eslint-config-prettier": "^7.0.0",
