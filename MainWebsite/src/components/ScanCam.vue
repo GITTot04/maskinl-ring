@@ -1,9 +1,20 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import { StreamBarcodeReader } from "vue-barcode-reader";
+
+const CamIP = ref("");
+
+function SaveIP(event) {
+    CamIP.value = event.value;
+}
 
 </script>
 
 <template>
+  <div class="IPCam">
+    <h1>Indtast Kameraets IP</h1>
+    <input v-model="SaveIP" @submit="SaveIP" @keyup.enter="SaveIP" placeholder="edit me" />
+  </div>
   <div class="Cam">
     <!--<StreamBarcodeReader @decode="onDecode" @loaded="onLoaded"></StreamBarcodeReader>-->
       <h1> Picture of what the camera sees omg so HD</h1>
