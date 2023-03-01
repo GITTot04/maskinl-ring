@@ -8,6 +8,91 @@ int enB = 23;
 int in3 = 19;
 int in4 = 5;
 
+char direction = 'f';
+
+void Backwards(int time){
+    analogWrite(enA, 255);
+    analogWrite(enB, 255);
+
+    // Turn on motor A & B
+    digitalWrite(in1, HIGH);
+    digitalWrite(in2, LOW);
+    digitalWrite(in3, HIGH);
+    digitalWrite(in4, LOW);
+    delay(time);
+}
+void Forwards(int time){
+    analogWrite(enA, 255);
+    analogWrite(enB, 255);
+
+    // Turn on motor A & B
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, HIGH);
+    delay(time);
+}
+void Left(int time){
+    analogWrite(enA, 255);
+    analogWrite(enB, 0);
+
+    // Turn on motor A & B
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, HIGH);
+    delay(time);
+}
+void Right(int time){
+    analogWrite(enA, 0);
+    analogWrite(enB, 255);
+
+    // Turn on motor A & B
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, HIGH);
+    delay(time);
+}
+
+
+
+
+void setup() {
+    pinMode(enA, OUTPUT);
+    pinMode(enB, OUTPUT);
+    pinMode(in1, OUTPUT);
+    pinMode(in2, OUTPUT);
+    pinMode(in3, OUTPUT);
+    pinMode(in4, OUTPUT);
+	
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, LOW);
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, LOW);
+}
+
+void loop() {
+    if (direction == 'f')
+    {
+        Forwards(2000);
+        direction = 'b';
+    }else if (direction == 'b')
+    {
+        Backwards(2000);
+        direction = 'l'; 
+    }else if (direction == 'l')
+    {
+        Left(2000);
+        direction = 'r';
+    }else if (direction == 'r')
+    {
+        Right(2000);
+        direction = 'f';
+    }
+}
+
+/* alt væk
 void directionControl() {
     // Set motors to maximum speed
     // PWM value ranges from 0 to 255
@@ -79,3 +164,5 @@ void loop() {
     speedControl();
     delay(1000);
 }
+
+*/
