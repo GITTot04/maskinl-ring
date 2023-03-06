@@ -9,10 +9,13 @@ int in3 = 19;
 int in4 = 5;
 
 char direction = 'f';
+// speed er max 255
+int speed = 127;
+int stop = 0;
 
 void Backwards(int time){
-    analogWrite(enA, 255);
-    analogWrite(enB, 255);
+    analogWrite(enA, speed);
+    analogWrite(enB, speed);
 
     // Turn on motor A & B
     digitalWrite(in1, HIGH);
@@ -22,8 +25,8 @@ void Backwards(int time){
     delay(time);
 }
 void Forwards(int time){
-    analogWrite(enA, 255);
-    analogWrite(enB, 255);
+    analogWrite(enA, speed);
+    analogWrite(enB, speed);
 
     // Turn on motor A & B
     digitalWrite(in1, LOW);
@@ -33,7 +36,7 @@ void Forwards(int time){
     delay(time);
 }
 void Left(int time){
-    analogWrite(enA, 255);
+    analogWrite(enA, speed);
     analogWrite(enB, 0);
 
     // Turn on motor A & B
@@ -45,7 +48,7 @@ void Left(int time){
 }
 void Right(int time){
     analogWrite(enA, 0);
-    analogWrite(enB, 255);
+    analogWrite(enB, speed);
 
     // Turn on motor A & B
     digitalWrite(in1, LOW);
@@ -73,22 +76,29 @@ void setup() {
 }
 
 void loop() {
-    if (direction == 'f')
-    {
-        Forwards(2000);
-        direction = 'b';
-    }else if (direction == 'b')
-    {
-        Backwards(2000);
-        direction = 'l'; 
-    }else if (direction == 'l')
-    {
-        Left(2000);
-        direction = 'r';
-    }else if (direction == 'r')
-    {
-        Right(2000);
-        direction = 'f';
+    if (stop <= 2){
+        if (direction == 'f')
+        {
+            Forwards(2000);
+            direction = 'b';
+        }else if (direction == 'b')
+        {
+            Backwards(2000);
+            direction = 'l'; 
+        }else if (direction == 'l')
+        {
+            Left(2000);
+            direction = 'r';
+        }else if (direction == 'r')
+        {
+            Right(2000);
+            direction = 'f';
+            stop++;
+        }
+    }
+    if (stop == 3){
+        analogWrite(enA, 0);
+        analogWrite(enB, 0);
     }
 }
 
